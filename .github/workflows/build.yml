@@ -1,0 +1,43 @@
+name: Build Resume
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - uses: prefix-dev/setup-pixi@a0af7a228712d6121d37aba47adf55c1332c9c2e # v0.9.4
+
+      - name: Build LaTeX
+        run: pixi run build
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: Shruti_Priya_CV
+          path: Shruti_Priya_CV.pdf
+
+      # pshruti.com/cv redirects to pshruti.com/resume/Shruti_Priya_CV.pdf (or _F.pdf with ?f)
+      - name: Prepare gh-pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p deploy
+          cp Shruti_Priya_CV.pdf deploy/Shruti_Priya_CV.pdf
+          cp Shruti_Priya_CV.pdf deploy/Shruti_Priya_CV_F.pdf
+
+      - name: Deploy to GitHub Pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@47f197a2200bb9de68ba5f48fad1c088eb1c4a32 # v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./deploy
+          keep_files: true # keep older files on gh-pages, e.g. Shruti_Priya_Resume.pdf
