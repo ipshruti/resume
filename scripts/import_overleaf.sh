@@ -16,7 +16,7 @@ tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 unzip -q -o "$zip" -d "$tmp"
 
-# Only the LaTeX sources; README/LICENSE/template images in the zip are Overleaf template boilerplate.
+# Only the LaTeX sources; README, LICENSE and template images in the zip are Overleaf boilerplate.
 cp "$tmp"/resume.tex "$tmp"/_header.tex "$tmp"/TLCresume.sty "$repo"/
 mkdir -p "$repo/sections"
 cp "$tmp"/sections/*.tex "$repo/sections/"

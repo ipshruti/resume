@@ -15,3 +15,5 @@ Requires [pixi](https://pixi.sh). The LaTeX compiler ([Tectonic](https://tectoni
 
 Typical flow: edit in Overleaf → Menu → Download → Source → `pixi run update` → commit.
 You can also skip Overleaf and edit the files in `sections/` directly, then `pixi run build`.
+
+Based on the [Data Science Tech Resume Template](https://www.overleaf.com/latex/templates/data-science-tech-resume-template/zcdmpfxrzjhv) by [Timmy Chan](https://github.com/TimmyChan), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
