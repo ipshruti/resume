@@ -10,7 +10,7 @@
 	    \href{mailto:\email}{\email}} % EMAIL}
 	\chead{%
 	    \centering {\Huge \skills \name \vspace{.25em}} \\ % feel free to adjust vspace to 0 
-	    {\color{highlight} \Large{\role}}}%
+	    \ifdefined\role{\color{highlight} \Large{\role}}\fi}% role is optional
 	    \rhead{Portfolio: \href{https://pshruti.com}{ pshruti.com}\\ % Portfolio
 	    \href{https://github.com/\github}{github.com/\github} \\% Github
 	    \href{https://www.linkedin.com/in/\LinkedIn}{linkedin.com/in/\LinkedIn}} % LinkedIn

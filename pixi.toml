@@ -1,0 +1,15 @@
+[workspace]
+authors = ["Shruti Priya"]
+channels = ["conda-forge"]
+name = "resume"
+platforms = ["osx-arm64", "linux-64"]
+version = "0.1.0"
+
+[tasks]
+build = { cmd = "tectonic resume.tex && mv resume.pdf Shruti_Priya_CV.pdf", description = "Compile resume.tex into Shruti_Priya_CV.pdf" }
+import = { cmd = "bash scripts/import_overleaf.sh", description = "Copy LaTeX sources from the newest Overleaf zip in ~/Downloads (or pass a zip path)" }
+update = { depends-on = ["import", "build"], description = "Import the latest Overleaf export and rebuild the PDF" }
+open = { cmd = "open Shruti_Priya_CV.pdf", description = "Open the built PDF" }
+
+[dependencies]
+tectonic = ">=0.17.0,<0.18"

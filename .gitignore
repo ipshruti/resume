@@ -1,0 +1,9 @@
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+
+# LaTeX build intermediates (the PDF is renamed to Shruti_Priya_CV.pdf)
+resume.pdf
+*.log
+*.aux
+*.out
